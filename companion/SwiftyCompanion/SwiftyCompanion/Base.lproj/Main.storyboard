@@ -28,9 +28,9 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I61-S6-Nzv">
-                                <rect key="frame" x="75" y="141" width="224" height="170"/>
+                                <rect key="frame" x="102" y="141" width="170" height="170"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="icons8-search-512"/>
+                                <state key="normal" image="icons8-search-512"/>
                                 <connections>
                                     <action selector="searchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yK0-YX-4BT"/>
                                 </connections>

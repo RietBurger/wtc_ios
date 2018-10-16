@@ -8,9 +8,6 @@
 
 import UIKit
 
-//var userToken = ""
-//var token = ""
-
 class ApiController: NSObject {
     
     let uid = "751327c0145179dc9c35e5d37a1bbf0234bf747f73470612acbbc5c5c54ed275";
