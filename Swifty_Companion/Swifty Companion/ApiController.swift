@@ -24,7 +24,6 @@ class ApiController: NSObject {
     func getUser(username: String, completion: @escaping (JSON?) -> Void) {
         let userUrl = NSURL(string: "https://api.intra.42.fr/v2/users/" + username)
         let bearer = "Bearer " + token
-        print("this is token in getUser: \(token)")
         var request = URLRequest(url: userUrl! as URL)
         request.httpMethod = "GET"
         request.setValue(bearer, forHTTPHeaderField: "Authorization")
@@ -44,8 +43,6 @@ class ApiController: NSObject {
     
     func getToken() {
         let verify = UserDefaults.standard.object(forKey: "token")
-        print("this is token in getToken: \(token)")
-        print("this is verify in getToken(): \(verify)")
         if verify == nil {
             let url = URL(string: "https://api.intra.42.fr/v2/oauth/token")
             
@@ -61,15 +58,15 @@ class ApiController: NSObject {
                 }
                 else if let d = data{
                     do{
-                        if token == "" {//RED
-                        if let dic : NSDictionary = try JSONSerialization.jsonObject(with: d, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary{
-                            if let temp = dic["access_token"]
-                            {
-                                token = temp as! String
-                                self.checkToken()
+                        if token == "" {
+                            if let dic : NSDictionary = try JSONSerialization.jsonObject(with: d, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary{
+                                if let temp = dic["access_token"]
+                                {
+                                    token = temp as! String
+                                    self.checkToken()
+                                }
                             }
-                        }
-                        } else {//RED
+                        } else {
                             self.checkToken()
                         }
                     }
@@ -106,8 +103,6 @@ class ApiController: NSObject {
                     print("The token will expire in:", json["expires_in_seconds"], "seconds.")
                 }
             case .failure:
-                print("this is .failure response.result: \(response.result)")
-                print("this is .failure token: \(token)")
                 print("Error: Trying to get a new token...")
                 UserDefaults.standard.removeObject(forKey: "token")
                 self.getToken()
